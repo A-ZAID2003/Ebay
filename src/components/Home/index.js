@@ -1,4 +1,3 @@
-// Home.js
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import Cookies from 'js-cookie'
