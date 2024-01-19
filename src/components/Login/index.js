@@ -13,6 +13,30 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      if (state.userId.trim() === '' && state.pin.trim() === '') {
+        setState({
+          ...state,
+          error: 'User ID and PIN are required. Please enter both values.',
+        })
+        return
+      }
+
+      if (state.userId.trim() === '') {
+        setState({
+          ...state,
+          error: 'User ID is required. Please enter a valid User ID.',
+        })
+        return
+      }
+
+      if (state.pin.trim() === '') {
+        setState({
+          ...state,
+          error: 'PIN is required. Please enter a valid PIN.',
+        })
+        return
+      }
+
       const response = await fetch('https://apis.ccbp.in/ebank/login', {
         method: 'POST',
         headers: {
@@ -35,19 +59,20 @@ const Login = () => {
         history.replace('/')
       } else {
         // Login failed
-        setState(prevState => ({
-          ...prevState,
+        setState({
+          ...state,
           error: data.error_msg || 'Invalid credentials. Please try again.',
-        }))
+        })
       }
     } catch (loginError) {
       // Handle other errors
-      setState(prevState => ({
-        ...prevState,
+      setState({
+        ...state,
         error: 'An error occurred. Please try again later.',
-      }))
+      })
     }
   }
+
   return (
     <div>
       <img
@@ -63,9 +88,7 @@ const Login = () => {
             type="text"
             id="userId"
             value={state.userId}
-            onChange={e =>
-              setState(prevState => ({...prevState, userId: e.target.value}))
-            }
+            onChange={e => setState({...state, userId: e.target.value})}
           />
 
           <label htmlFor="pin">PIN:</label>
@@ -73,9 +96,7 @@ const Login = () => {
             type="password"
             id="pin"
             value={state.pin}
-            onChange={e =>
-              setState(prevState => ({...prevState, pin: e.target.value}))
-            }
+            onChange={e => setState({...state, pin: e.target.value})}
           />
         </form>
       </div>

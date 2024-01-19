@@ -13,10 +13,8 @@ const App = () => (
   <Router>
     <Switch>
       <Route path="/ebank/login" component={Login} />
-      <Route path="/home" component={Home} />
-      <Route path="/not-found" component={NotFound} />
-      <Redirect from="/" to="/home" exact />
-      <Redirect to="/not-found" />
+      <Route exact path="/" component={Home} />
+      <Route component={NotFound} />
     </Switch>
   </Router>
 )
