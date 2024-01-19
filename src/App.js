@@ -10,13 +10,11 @@ import Home from './components/Home'
 import NotFound from './components/NotFound'
 
 const App = () => (
-  <Router>
-    <Switch>
-      <Route path="/ebank/login" component={Login} />
-      <Route exact path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
-  </Router>
+  <Switch>
+    <Route path="/ebank/login" component={Login} />
+    <Route exact path="/" component={Home} />
+    <Route component={NotFound} />
+  </Switch>
 )
 
 export default App

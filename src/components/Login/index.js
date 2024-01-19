@@ -39,9 +39,6 @@ const Login = () => {
 
       const response = await fetch('https://apis.ccbp.in/ebank/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({
           user_id: state.userId,
           pin: state.pin,
