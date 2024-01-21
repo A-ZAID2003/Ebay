@@ -1,4 +1,3 @@
-import React from 'react'
 import {useHistory} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
@@ -6,8 +5,6 @@ const Home = () => {
   const history = useHistory()
 
   const handleLogout = () => {
-    // For simplicity, clear any authentication-related data
-    // and navigate to the Login Route
     Cookies.remove('jwt_token')
     history.replace('/ebank/login')
   }

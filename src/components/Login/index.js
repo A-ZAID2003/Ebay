@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import Cookies from 'js-cookie'
 
@@ -48,21 +48,16 @@ const Login = () => {
       const data = await response.json()
 
       if (response.ok) {
-        // Successful login
-        // Save JWT token to cookies with an expiration of 1 day (adjust as needed)
         Cookies.set('jwt_token', data.jwt_token, {expires: 1})
 
-        // Redirect to Home Route
         history.replace('/')
       } else {
-        // Login failed
         setState({
           ...state,
           error: data.error_msg || 'Invalid credentials. Please try again.',
         })
       }
     } catch (loginError) {
-      // Handle other errors
       setState({
         ...state,
         error: 'An error occurred. Please try again later.',
